@@ -10,7 +10,11 @@ Get-WmiObject Win32_Product -ComputerName $computername | Select-Object -Propert
 
 # Deinstalliere folgende Software:
 
-$computername = "$Computername"
+
+cls 
+
+$computername = "COMPUTERNAME"
+
 $name1 = "WinJur Reports Runtime ""LL10"""
 $name2 = "WinJur Call Manager 4.2.34"
 $name3 = "WinJur ZED Import 3.8.0.0"
@@ -26,36 +30,18 @@ $name12 = "WinJur BESR 3.7.2 (Programs)"
 $name13 = "WinJur Data Preparation 4.1.0"
 $name14 = "WinJur JL Register"
 
+$Bodenname='$name'
+$Nummeraufsteigend=1
+$Schlaufeaufsteigend=0
 
-
-Write-Host "Working on " $name1
-(Get-WmiObject Win32_Product -ComputerName $computername | Where-Object {$_.name -eq $name1}).Uninstall()
-Write-Host "Working on " $name2
-(Get-WmiObject Win32_Product -ComputerName $computername | Where-Object {$_.name -eq $name2}).Uninstall()
-Write-Host "Working on " $name3
-(Get-WmiObject Win32_Product -ComputerName $computername | Where-Object {$_.name -eq $name3}).Uninstall()
-Write-Host "Working on " $name4
-(Get-WmiObject Win32_Product -ComputerName $computername | Where-Object {$_.name -eq $name4}).Uninstall()
-Write-Host "Working on " $name5
-(Get-WmiObject Win32_Product -ComputerName $computername | Where-Object {$_.name -eq $name5}).Uninstall()
-Write-Host "Working on " $name6
-(Get-WmiObject Win32_Product -ComputerName $computername | Where-Object {$_.name -eq $name6}).Uninstall()
-Write-Host "Working on " $name7
-(Get-WmiObject Win32_Product -ComputerName $computername | Where-Object {$_.name -eq $name7}).Uninstall()
-Write-Host "Working on " $name8
-(Get-WmiObject Win32_Product -ComputerName $computername | Where-Object {$_.name -eq $name8}).Uninstall()
-Write-Host "Working on " $name9
-(Get-WmiObject Win32_Product -ComputerName $computername | Where-Object {$_.name -eq $name9}).Uninstall()
-Write-Host "Working on " $name10
-(Get-WmiObject Win32_Product -ComputerName $computername | Where-Object {$_.name -eq $name10}).Uninstall()
-Write-Host "Working on " $name11
-(Get-WmiObject Win32_Product -ComputerName $computername | Where-Object {$_.name -eq $name11}).Uninstall()
-Write-Host "Working on " $name12
-(Get-WmiObject Win32_Product -ComputerName $computername | Where-Object {$_.name -eq $name12}).Uninstall()
-Write-Host "Working on " $name13
-(Get-WmiObject Win32_Product -ComputerName $computername | Where-Object {$_.name -eq $name13}).Uninstall()
-Write-Host "Working on " $name14
-(Get-WmiObject Win32_Product -ComputerName $computername | Where-Object {$_.name -eq $name14}).Uninstall()
+do{
+    $Zusammensetzen="$Bodenname$Nummeraufsteigend"
+    $Namenfinden= $ExecutionContext.InvokeCommand.ExpandString($Zusammensetzen)
+	Write-Host "Working on " $Namenfinden
+	#(Get-WmiObject Win32_Product -ComputerName $computername | Where-Object {$_.name -eq $Namenfinden}).Uninstall()
+	$Schlaufeaufsteigend++
+    $Nummeraufsteigend++
+} while ($Schlaufeaufsteigend -lt 14)
 
 #GPUpdate (klappt nicht?)
 
